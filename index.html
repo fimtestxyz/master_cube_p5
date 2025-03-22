@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Audio Reactive Cube</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        #upload-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+        canvas {
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="upload-container">
+        <input type="file" id="audio-upload" accept="audio/*">
+    </div>
+    <script src="sketch.js"></script>
+</body>
+</html>
