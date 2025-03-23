@@ -3,4 +3,8 @@ main = "worker.js"
 compatibility_date = "2023-01-01"
 
 [site]
-bucket = "./"
+bucket = "./assets"
+
+[[rules]]
+type = "ESModule"
+globs = ["**/*.js"]
