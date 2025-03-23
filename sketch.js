@@ -35,6 +35,10 @@ let sound;
 let fft;
 let spectrum;
 let audioPlaying = false;
+let fileName = "Upload an audio file";
+let textY;
+let textWaveAmplitude = 20;
+let textWaveFrequency = 0.1;
 let shapes = ['box', 'sphere', 'torus', 'cylinder', 'cone', 'octahedron', 'torusKnot'];
 let currentShape = 0;
 
@@ -59,6 +63,7 @@ function setup() {
             sound.stop();
         }
         
+        fileName = file.name;
         sound = loadSound(url, () => {
             sound.play();
             audioPlaying = true;
@@ -125,6 +130,29 @@ function updateColors() {
 
 function draw() {
     background(5);
+    
+    // Draw the file name with wave effect
+    push();
+    textAlign(CENTER, CENTER);
+    textSize(24);
+    textStyle(BOLD);
+    noStroke();
+    
+    // Create wave motion
+    textY = height * 0.1 + sin(frameCount * textWaveFrequency) * textWaveAmplitude;
+    
+    // Add glow effect
+    fill(red(c1), green(c1), blue(c1), 100);
+    for(let i = 0; i < 5; i++) {
+        text(fileName, width/2 + i, textY + i);
+        text(fileName, width/2 - i, textY - i);
+    }
+    
+    // Main text
+    fill(red(c2), green(c2), blue(c2));
+    text(fileName, width/2, textY);
+    pop();
+
     t = frameCount / maxFrameCount;
     theta = TWO_PI * t;
 
