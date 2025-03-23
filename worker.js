@@ -31,7 +31,7 @@ async function handleRequest(request) {
     // Serve static files directly from the worker's assets
     const asset = await __STATIC_CONTENT.get(path)
     if (!asset) {
-      return new Response('Not Found', { status: 404, headers: corsHeaders })
+      return new Response('Not Found .... Oops wakao', { status: 404, headers: corsHeaders })
     }
     const contentType = getContentType(path)
 
