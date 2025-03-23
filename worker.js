@@ -27,12 +27,15 @@ async function handleRequest(request) {
       path = '/index.html'
     }
 
-    // Fetch the asset from KV or your static assets
-    const response = await fetch(`https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO${path}`)
+    // Serve static files directly from the worker's assets
+    const asset = await __STATIC_CONTENT.get(path)
+    if (!asset) {
+      return new Response('Not Found', { status: 404, headers: corsHeaders })
+    }
     const contentType = getContentType(path)
 
     // Create response with proper content type and CORS headers
-    return new Response(response.body, {
+    return new Response(asset, {
       headers: {
         ...corsHeaders,
         'Content-Type': contentType
